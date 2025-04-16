@@ -71,7 +71,7 @@ def selection(population):
 # crossover (1 point crossover)
 def crossover(parent1, parent2):
     # Cek apakah crossover akan dilakukan berdasarkan probabilitas PC
-    if random.random() < PC:
+    if random.random() <= PC:
         # Tentukan titik potong (crossover point) secara acak
         titik_silang = random.randint(1, CHROMOSOME_LENGTH - 1)
 
