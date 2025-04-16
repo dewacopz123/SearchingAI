@@ -70,18 +70,40 @@ def selection(population):
 
 # crossover (1 point crossover)
 def crossover(parent1, parent2):
+    # Cek apakah crossover akan dilakukan berdasarkan probabilitas PC
     if random.random() < PC:
-        point = random.randint(1, CHROMOSOME_LENGTH - 1)
-        return (parent1[:point] + parent2[point:],
-                parent2[:point] + parent1[point:])
-    return parent1, parent2
+        # Tentukan titik potong (crossover point) secara acak
+        titik_silang = random.randint(1, CHROMOSOME_LENGTH - 1)
+
+        # Buat dua anak hasil crossover
+        anak1 = parent1[:titik_silang] + parent2[titik_silang:]
+        anak2 = parent2[:titik_silang] + parent1[titik_silang:]
+
+        return anak1, anak2
+    else:
+        # Jika tidak dilakukan crossover, anak = parent asli
+        return parent1, parent2
+
 
 # mutasi
 def mutasi(chromosome):
-    return ''.join(
-        bit if random.random() > PM else ('1' if bit == '0' else '0')
-        for bit in chromosome
-    )
+    # Inisialisasi string baru untuk menyimpan hasil mutasi
+    hasil_mutasi = ""
+
+    # Iterasi setiap bit dalam kromosom
+    for bit in chromosome:
+        # Jika nilai random lebih besar dari PM, bit tidak berubah
+        if random.random() > PM:
+            hasil_mutasi += bit
+        else:
+            # Bit '0' menjadi '1', dan bit '1' menjadi '0'
+            if bit == '0':
+                hasil_mutasi += '1'
+            else:
+                hasil_mutasi += '0'
+
+    return hasil_mutasi
+
 
 # evolusi populasi
 def evolve(population):
