@@ -6,7 +6,7 @@ POPULATION_SIZE = 32
 CHROMOSOME_LENGTH = 8  # 4 bit untuk x1, 4 bit untuk x2
 GEN_MAX = 100
 PC = 0.8  # Probabilitas crossover
-PM = 0.01  # Probabilitas mutasi
+PM = 0.3  # Probabilitas mutasi
 X_MIN = -10
 X_MAX = 10
 
